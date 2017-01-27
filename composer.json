@@ -10,7 +10,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "NetPath\\Tests\\": "tests"
+            "Netpath\\Tests\\": "tests"
         }
     },
     "scripts": {
