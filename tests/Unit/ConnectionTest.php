@@ -15,7 +15,7 @@ class ConnectionTest extends TestCase
     $this->assertEquals('from to 100', (string) $conn);
   }
 
-  private function getDevices() {
+  protected function getDevices() {
     return [
       new Device('from'),
       new Device('to')
