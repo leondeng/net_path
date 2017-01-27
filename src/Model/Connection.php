@@ -17,6 +17,18 @@ class Connection implements IConnection
     $this->latency = $latency;
   }
 
+  public function getFromDevice() {
+    return $this->from;
+  }
+
+  public function getToDevice() {
+    return $this->to;
+  }
+
+  public function getLatency() {
+    return $this->latency;
+  }
+
   public function __toString() {
     return sprintf('%s %s %d', $this->from, $this->to, $this->latency);
   }
