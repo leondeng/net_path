@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1484981578">
+  <project timestamp="1484981578">
+    <package name="Simcafe\Exception">
+      <file name="/home/fan/dev/github/sim_cafe/src/Exception/CollisionException.php">
+        <class name="CollisionException" namespace="Simcafe\Exception">
+          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="6" ncloc="6" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+      <file name="/home/fan/dev/github/sim_cafe/src/Exception/NegativestepException.php">
+        <class name="NegativeStepException" namespace="Simcafe\Exception">
+          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="6" ncloc="6" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+      <file name="/home/fan/dev/github/sim_cafe/src/Exception/OverstepException.php">
+        <class name="OverstepException" namespace="Simcafe\Exception">
+          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="6" ncloc="6" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+    </package>
+    <file name="/home/fan/dev/github/sim_cafe/src/Interfaces/ICommand.php">
+      <metrics loc="9" ncloc="9" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/home/fan/dev/github/sim_cafe/src/Interfaces/ICoord.php">
+      <metrics loc="12" ncloc="12" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/home/fan/dev/github/sim_cafe/src/Interfaces/IDirection.php">
+      <metrics loc="8" ncloc="8" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/home/fan/dev/github/sim_cafe/src/Interfaces/IEngine.php">
+      <metrics loc="10" ncloc="10" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/home/fan/dev/github/sim_cafe/src/Interfaces/IRobot.php">
+      <metrics loc="11" ncloc="11" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <file name="/home/fan/dev/github/sim_cafe/src/Interfaces/IShop.php">
+      <metrics loc="8" ncloc="8" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+    </file>
+    <package name="Simcafe\Model">
+      <file name="/home/fan/dev/github/sim_cafe/src/Model/Command.php">
+        <class name="Command" namespace="Simcafe\Model">
+          <metrics complexity="9" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="16" elements="22" coveredelements="22"/>
+        </class>
+        <line num="23" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="12"/>
+        <line num="24" type="stmt" count="12"/>
+        <line num="26" type="stmt" count="12"/>
+        <line num="28" type="stmt" count="11"/>
+        <line num="29" type="stmt" count="11"/>
+        <line num="31" type="method" name="validateCommand" visibility="private" complexity="2" crap="2" count="12"/>
+        <line num="32" type="stmt" count="12"/>
+        <line num="34" type="stmt" count="12"/>
+        <line num="35" type="stmt" count="1"/>
+        <line num="37" type="stmt" count="11"/>
+        <line num="39" type="method" name="getAction" visibility="public" complexity="2" crap="2" count="8"/>
+        <line num="40" type="stmt" count="8"/>
+        <line num="41" type="stmt" count="1"/>
+        <line num="44" type="stmt" count="8"/>
+        <line num="47" type="method" name="next" visibility="public" complexity="2" crap="2" count="7"/>
+        <line num="48" type="stmt" count="7"/>
+        <line num="49" type="stmt" count="5"/>
+        <line num="52" type="stmt" count="6"/>
+        <line num="55" type="method" name="getLength" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="56" type="stmt" count="1"/>
+        <line num="59" type="method" name="__toString" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="60" type="stmt" count="3"/>
+        <metrics loc="61" ncloc="61" classes="1" methods="6" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="16" coveredstatements="16" elements="22" coveredelements="22"/>
+      </file>
+      <file name="/home/fan/dev/github/sim_cafe/src/Model/Coord.php">
+        <class name="Coord" namespace="Simcafe\Model">
+          <metrics complexity="10" methods="8" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="17" elements="26" coveredelements="24"/>
+        </class>
+        <line num="13" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="11"/>
+        <line num="14" type="stmt" count="11"/>
+        <line num="15" type="stmt" count="11"/>
+        <line num="16" type="stmt" count="11"/>
+        <line num="18" type="method" name="incrementX" visibility="public" complexity="1" crap="1" count="5"/>
+        <line num="19" type="stmt" count="5"/>
+        <line num="20" type="stmt" count="5"/>
+        <line num="22" type="method" name="incrementY" visibility="public" complexity="1" crap="1" count="5"/>
+        <line num="23" type="stmt" count="5"/>
+        <line num="24" type="stmt" count="5"/>
+        <line num="26" type="method" name="decrementX" visibility="public" complexity="2" crap="2" count="6"/>
+        <line num="27" type="stmt" count="6"/>
+        <line num="28" type="stmt" count="1"/>
+        <line num="31" type="stmt" count="5"/>
+        <line num="32" type="stmt" count="5"/>
+        <line num="34" type="method" name="decrementY" visibility="public" complexity="2" crap="2.06" count="6"/>
+        <line num="35" type="stmt" count="6"/>
+        <line num="36" type="stmt" count="0"/>
+        <line num="39" type="stmt" count="6"/>
+        <line num="40" type="stmt" count="6"/>
+        <line num="42" type="method" name="getX" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="43" type="stmt" count="4"/>
+        <line num="46" type="method" name="getY" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="47" type="stmt" count="4"/>
+        <line num="50" type="method" name="__toString" visibility="public" complexity="1" crap="1" count="9"/>
+        <line num="51" type="stmt" count="9"/>
+        <metrics loc="52" ncloc="52" classes="1" methods="8" coveredmethods="7" conditionals="0" coveredconditionals="0" statements="18" coveredstatements="17" elements="26" coveredelements="24"/>
+      </file>
+      <file name="/home/fan/dev/github/sim_cafe/src/Model/Direction.php">
+        <class name="Direction" namespace="Simcafe\Model">
+          <metrics complexity="7" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="12" elements="16" coveredelements="16"/>
+        </class>
+        <line num="30" type="method" name="__construct" visibility="public" complexity="2" crap="2" count="13"/>
+        <line num="31" type="stmt" count="13"/>
+        <line num="32" type="stmt" count="1"/>
+        <line num="35" type="stmt" count="12"/>
+        <line num="36" type="stmt" count="12"/>
+        <line num="38" type="method" name="turnLeft" visibility="public" complexity="2" crap="2" count="6"/>
+        <line num="39" type="stmt" count="6"/>
+        <line num="40" type="stmt" count="6"/>
+        <line num="41" type="stmt" count="6"/>
+        <line num="43" type="method" name="turnRight" visibility="public" complexity="2" crap="2" count="6"/>
+        <line num="44" type="stmt" count="6"/>
+        <line num="45" type="stmt" count="6"/>
+        <line num="46" type="stmt" count="6"/>
+        <line num="47" type="stmt" count="6"/>
+        <line num="49" type="method" name="__toString" visibility="public" complexity="1" crap="1" count="12"/>
+        <line num="50" type="stmt" count="12"/>
+        <metrics loc="52" ncloc="52" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="12" coveredstatements="12" elements="16" coveredelements="16"/>
+      </file>
+      <file name="/home/fan/dev/github/sim_cafe/src/Model/Robot.php">
+        <class name="Robot" namespace="Simcafe\Model">
+          <metrics complexity="18" methods="12" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="35" elements="49" coveredelements="45"/>
+        </class>
+        <line num="18" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="9"/>
+        <line num="21" type="stmt" count="9"/>
+        <line num="22" type="stmt" count="9"/>
+        <line num="23" type="stmt" count="9"/>
+        <line num="24" type="stmt" count="9"/>
+        <line num="26" type="method" name="getCommand" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="27" type="stmt" count="2"/>
+        <line num="30" type="method" name="act" visibility="public" complexity="6" crap="6" count="7"/>
+        <line num="31" type="stmt" count="7"/>
+        <line num="32" type="stmt" count="1"/>
+        <line num="35" type="stmt" count="7"/>
+        <line num="36" type="stmt" count="7"/>
+        <line num="37" type="stmt" count="5"/>
+        <line num="38" type="stmt" count="5"/>
+        <line num="39" type="stmt" count="7"/>
+        <line num="40" type="stmt" count="5"/>
+        <line num="41" type="stmt" count="5"/>
+        <line num="42" type="stmt" count="7"/>
+        <line num="43" type="stmt" count="7"/>
+        <line num="44" type="stmt" count="6"/>
+        <line num="47" type="stmt" count="6"/>
+        <line num="48" type="stmt" count="4"/>
+        <line num="51" type="stmt" count="6"/>
+        <line num="54" type="method" name="move" visibility="private" complexity="2" crap="2.03" count="7"/>
+        <line num="55" type="stmt" count="7"/>
+        <line num="57" type="stmt" count="7"/>
+        <line num="58" type="stmt" count="7"/>
+        <line num="60" type="stmt" count="0"/>
+        <line num="62" type="stmt" count="6"/>
+        <line num="64" type="method" name="moveNorth" visibility="protected" complexity="1" crap="1" count="4"/>
+        <line num="65" type="stmt" count="4"/>
+        <line num="66" type="stmt" count="4"/>
+        <line num="68" type="method" name="moveEast" visibility="protected" complexity="1" crap="1" count="5"/>
+        <line num="69" type="stmt" count="5"/>
+        <line num="70" type="stmt" count="5"/>
+        <line num="72" type="method" name="moveSouth" visibility="protected" complexity="1" crap="1" count="4"/>
+        <line num="73" type="stmt" count="4"/>
+        <line num="74" type="stmt" count="4"/>
+        <line num="76" type="method" name="moveWest" visibility="protected" complexity="1" crap="1" count="6"/>
+        <line num="77" type="stmt" count="6"/>
+        <line num="78" type="stmt" count="5"/>
+        <line num="80" type="method" name="isDone" visibility="public" complexity="1" crap="1" count="5"/>
+        <line num="81" type="stmt" count="5"/>
+        <line num="84" type="method" name="getCoord" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="85" type="stmt" count="3"/>
+        <line num="88" type="method" name="getDirection" visibility="public" complexity="1" crap="2" count="0"/>
+        <line num="89" type="stmt" count="0"/>
+        <line num="92" type="method" name="__toString" visibility="public" complexity="1" crap="1" count="7"/>
+        <line num="93" type="stmt" count="7"/>
+        <metrics loc="95" ncloc="95" classes="1" methods="12" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="37" coveredstatements="35" elements="49" coveredelements="45"/>
+      </file>
+      <file name="/home/fan/dev/github/sim_cafe/src/Model/Shop.php">
+        <class name="Shop" namespace="Simcafe\Model">
+          <metrics complexity="4" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="10" coveredelements="10"/>
+        </class>
+        <line num="12" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="13" type="stmt" count="4"/>
+        <line num="14" type="stmt" count="4"/>
+        <line num="15" type="stmt" count="4"/>
+        <line num="17" type="method" name="getWidth" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="18" type="stmt" count="3"/>
+        <line num="21" type="method" name="getLength" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="22" type="stmt" count="3"/>
+        <line num="25" type="method" name="__toString" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="26" type="stmt" count="2"/>
+        <metrics loc="27" ncloc="27" classes="1" methods="4" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="6" coveredstatements="6" elements="10" coveredelements="10"/>
+      </file>
+      <file name="/home/fan/dev/github/sim_cafe/src/Model/USDRobot.php">
+        <class name="USDRobot" namespace="Simcafe\Model">
+          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="6" coveredelements="6"/>
+        </class>
+        <line num="10" type="method" name="moveNorth" visibility="protected" complexity="1" crap="1" count="2"/>
+        <line num="11" type="stmt" count="2"/>
+        <line num="12" type="stmt" count="2"/>
+        <line num="14" type="method" name="moveSouth" visibility="protected" complexity="1" crap="1" count="1"/>
+        <line num="15" type="stmt" count="1"/>
+        <line num="16" type="stmt" count="1"/>
+        <metrics loc="16" ncloc="13" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="6" coveredelements="6"/>
+      </file>
+    </package>
+    <package name="Simcafe\Runner">
+      <file name="/home/fan/dev/github/sim_cafe/src/Runner/Engine.php">
+        <class name="Engine" namespace="Simcafe\Runner">
+          <metrics complexity="20" methods="10" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="30" coveredstatements="30" elements="40" coveredelements="40"/>
+        </class>
+        <line num="17" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="4"/>
+        <line num="18" type="stmt" count="4"/>
+        <line num="19" type="stmt" count="4"/>
+        <line num="20" type="stmt" count="4"/>
+        <line num="22" type="method" name="loadRobots" visibility="private" complexity="2" crap="2" count="4"/>
+        <line num="23" type="stmt" count="4"/>
+        <line num="24" type="stmt" count="4"/>
+        <line num="26" type="stmt" count="4"/>
+        <line num="27" type="stmt" count="4"/>
+        <line num="29" type="method" name="addRobot" visibility="private" complexity="1" crap="1" count="4"/>
+        <line num="30" type="stmt" count="4"/>
+        <line num="31" type="stmt" count="4"/>
+        <line num="33" type="method" name="run" visibility="public" complexity="3" crap="3" count="3"/>
+        <line num="34" type="stmt" count="3"/>
+        <line num="35" type="stmt" count="3"/>
+        <line num="36" type="stmt" count="3"/>
+        <line num="37" type="stmt" count="3"/>
+        <line num="38" type="stmt" count="3"/>
+        <line num="42" type="stmt" count="1"/>
+        <line num="45" type="method" name="isDone" visibility="public" complexity="2" crap="2" count="3"/>
+        <line num="47" type="stmt" count="3"/>
+        <line num="48" type="stmt" count="3"/>
+        <line num="51" type="method" name="overstepDetect" visibility="public" complexity="4" crap="4" count="3"/>
+        <line num="52" type="stmt" count="3"/>
+        <line num="53" type="stmt" count="3"/>
+        <line num="54" type="stmt" count="3"/>
+        <line num="55" type="stmt" count="3"/>
+        <line num="58" type="stmt" count="3"/>
+        <line num="61" type="method" name="anonymous function" complexity="1" crap="1" count="3"/>
+        <line num="62" type="stmt" count="3"/>
+        <line num="63" type="stmt" count="3"/>
+        <line num="65" type="stmt" count="3"/>
+        <line num="66" type="stmt" count="1"/>
+        <line num="68" type="stmt" count="3"/>
+        <line num="70" type="method" name="result" visibility="public" complexity="2" crap="2" count="1"/>
+        <line num="71" type="stmt" count="1"/>
+        <line num="73" type="stmt" count="1"/>
+        <line num="74" type="stmt" count="1"/>
+        <line num="77" type="stmt" count="1"/>
+        <line num="80" type="method" name="getShop" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="81" type="stmt" count="1"/>
+        <line num="84" type="method" name="getRobots" visibility="public" complexity="1" crap="1" count="2"/>
+        <line num="85" type="stmt" count="2"/>
+        <metrics loc="86" ncloc="86" classes="1" methods="10" coveredmethods="10" conditionals="0" coveredconditionals="0" statements="33" coveredstatements="33" elements="43" coveredelements="43"/>
+      </file>
+    </package>
+    <metrics files="16" loc="465" ncloc="462" classes="7" methods="46" coveredmethods="43" conditionals="0" coveredconditionals="0" statements="126" coveredstatements="123" elements="172" coveredelements="166"/>
+  </project>
+</coverage>

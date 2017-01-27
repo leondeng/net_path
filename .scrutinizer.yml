@@ -1,0 +1,25 @@
+filter:
+    excluded_paths:
+        - 'tests/*'
+checks:
+    php: true
+coding_style:
+    php:
+        indentation:
+            general:
+                size: 2
+        spaces:
+            around_operators:
+                concatenation: true
+build:
+    environment:
+        php: '7.1.0'
+    tests:
+        before:
+            - 'composer install'
+        override:
+            -
+                command: 'composer test:coverage'
+                coverage:
+                    file: 'coverage.xml'
+                    format: 'clover'

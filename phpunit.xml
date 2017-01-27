@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false">
+    <testsuites>
+        <testsuite name="Unit Test Suite">
+            <directory suffix="Test.php">./tests/Unit</directory>
+        </testsuite>
+        <testsuite name="Functional Test Suite">
+            <directory suffix="Test.php">./tests/Functional</directory>
+        </testsuite>
+        <!-- <testsuite name="Api Test Suite">
+            <directory suffix="Test.php">./tests/Api</directory>
+        </testsuite> -->
+    </testsuites>
+    <filter>
+      <whitelist processUncoveredFilesFromWhitelist="true">
+        <directory suffix=".php">./src</directory>
+        <exclude>
+          <directory suffix=".php">./tests</directory>
+          <file>./src/app.php</file>
+        </exclude>
+      </whitelist>
+    </filter>
+</phpunit>

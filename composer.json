@@ -1,0 +1,25 @@
+{
+    "require": {
+        "php": ">=7.0.0",
+        "phpunit/phpunit": "5.5.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Netpath\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NetPath\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": [
+            "php vendor/bin/phpunit"
+        ],
+        "test:coverage": [
+            "php vendor/bin/phpunit --coverage-clover=coverage.xml"
+        ]
+    }
+
+}
