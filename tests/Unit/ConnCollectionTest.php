@@ -38,7 +38,7 @@ class ConnCollectionTest extends TestCase
     $collection = $this->getConnCollection();
 
     foreach ($this->getDevices() as $name => $device) {
-      $downstreams = $collection->findLinkedDevicesFor($device);
+      $downstreams = $collection->findLinkedDevicesFor($name);
       $this->assertEquals(parent::LINKED_DEVICES[$name], implode(',', array_map(function($device) {
         return (string) $device;
       }, $downstreams)));

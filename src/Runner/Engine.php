@@ -3,7 +3,6 @@
 namespace Netpath\Runner;
 
 use Netpath\Interfaces\IConnCollection;
-use Netpath\Interfaces\IConnection;
 use Netpath\Interfaces\INetDevice;
 use Netpath\Interfaces\IDevice;
 use Netpath\Interfaces\IEngine;
@@ -84,7 +83,7 @@ class Engine implements IEngine
    * @return array
    */
   private function findNeighborsFor(INetDevice $node) {
-    $devices = $this->collection->findLinkedDevicesFor($node);
+    $devices = $this->collection->findLinkedDevicesFor("$node");
 
     return array_filter($this->nodes, function($node) use($devices) {
       if (in_array("$node", $devices)) {
@@ -168,8 +167,6 @@ class Engine implements IEngine
       throw new InSituException;
     }
 
-    $this->reset();
-
     $this->isReversed = $source > $target;
     $this->source = $this->isReversed ? $target : $source;
     $this->target = $this->isReversed ? $source : $target;
@@ -178,11 +175,5 @@ class Engine implements IEngine
     $this->nodes = $this->rebuildNodes();
     $this->nodes[$this->source]->setLatency(0);
     $this->target_node = $this->nodes[$this->target];
-  }
-
-  private function reset() {
-    $this->nodes = [];
-    $this->source = $this->target = $this->max_latency = $this->target_node = null;
-    $this->isReversed = false;
   }
 }

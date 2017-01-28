@@ -2,7 +2,7 @@
 
 namespace Netpath\Interfaces;
 
-interface INetDevice
+interface INetDevice extends IDevice
 {
   public function setLatency(int $latency);
   public function getLatency();
