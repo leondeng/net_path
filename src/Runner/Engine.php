@@ -68,34 +68,39 @@ class Engine implements IEngine
           $downstream->setUpstream($node);
         }
       }
-    } while(!$this->isDone());
+    } while (!$this->isDone());
 
-    if (!$this->nodes[$this->target]->isVisited() ||
-        $this->nodes[$this->target]->getLatency() > $this->max_latency) {
+    $target_node = $this->getTargetNode();
+
+    if (!$target_node->isVisited() || $target_node->getLatency() > $this->max_latency) {
       throw new PathNotFoundException;
     }
 
-    return $this->nodes[$this->target];
+    return $target_node;
   }
 
   public function isDone() {
-    return $this->nodes[$this->target]->isVisited() ||
+    return $this->getTargetNode()->isVisited() ||
       !$this->getMinLatencyNode() ||
       $this->getMinLatencyNode()->getLatency() == INF;
   }
 
   public function report() {
-    $node = $this->nodes[$this->target];
+    $node = $this->getTargetNode();
     $path = [];
 
     do {
-      $this->isReversed ? array_push($path, $node): array_unshift($path, $node);
+      $this->isReversed ? array_push($path, $node) : array_unshift($path, $node);
       $node = $node->getUpstream();
-    } while($node);
+    } while ($node);
 
-    array_push($path, $this->nodes[$this->target]->getLatency());
+    array_push($path, $this->getTargetNode()->getLatency());
 
     return implode('=>', $path);
+  }
+
+  private function getTargetNode() {
+    return $this->nodes[$this->target];
   }
 
   private function getMinLatencyNode() {
@@ -109,15 +114,15 @@ class Engine implements IEngine
   }
 
   private function rebuildNodes() {
-    return array_combine(array_keys($this->devices), array_map(function (IDevice $device) {
+    return array_combine(array_keys($this->devices), array_map(function(IDevice $device) {
       return new NetDevice($device->getName());
     }, $this->devices));
   }
 
   private function init(string $source, string $target, int $max_latency) {
-    if (!(array_key_exists($source, $this->devices) &&
-       array_key_exists($target, $this->devices))) {
-      throw new DeviceNotFoundException;
+    $diff = array_diff([$source, $target], array_keys($this->devices));
+    if (!empty($diff)) {
+      throw new DeviceNotFoundException(sprintf("Device %s not existing.\n", implode(' and ', $diff)));
     }
 
     if ($source == $target) {

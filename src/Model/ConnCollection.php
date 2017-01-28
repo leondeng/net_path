@@ -34,7 +34,7 @@ class ConnCollection implements IConnCollection
     });
 
     if (empty($connections)) {
-      throw new ConnectionNotFoundException;
+      throw new ConnectionNotFoundException("No connection between $from and $to.\n");
     }
 
     return array_values($connections)[0]->getLatency();

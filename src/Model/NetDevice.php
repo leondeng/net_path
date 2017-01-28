@@ -18,7 +18,7 @@ class NetDevice extends Device implements INetDevice
     return $this->latency;
   }
 
-  public function setUpstream(INetDevice &$device) {
+  public function setUpstream(INetDevice $device) {
     $this->upstream = $device;
   }
   
