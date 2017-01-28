@@ -22,6 +22,7 @@ class Engine implements IEngine
   private $target;
   private $max_latency;
   private $isReversed = false;
+  private $target_node;
 
   public function __construct(IConnCollection $collection) {
     $this->collection = $collection;
@@ -61,24 +62,37 @@ class Engine implements IEngine
     do {
       $node = $this->getMinLatencyNode();
       $node->setVisited();
+      unset($this->nodes["$node"]);
 
-      foreach ($this->collection->findLinkedDevicesFor($node) as $device) {
-        if ($this->nodes["$device"]->isVisited()) {
-          continue;
-        }
+      foreach ($this->findNeighborsFor($node) as $neighbor) {
+        $latency = $node->getLatency() + $this->collection->getLatencyBetween($node, $neighbor);
 
-        $latency = $node->getLatency() + $this->collection->getLatencyBetween($node, $device);
-
-        $downstream = $this->nodes["$device"];
-
-        if ($latency < $downstream->getLatency()) {
-          $downstream->setLatency($latency);
-          $downstream->setUpstream($node);
+        if ($latency < $neighbor->getLatency()) {
+          $neighbor->setLatency($latency);
+          $neighbor->setUpstream($node);
         }
       }
     } while (!$this->isDone());
 
     return $this->getResult();
+  }
+
+  /**
+   * Find unvisited neighbor nodes for given nodes
+   * 
+   * @param  INetDevice $node
+   * @return array
+   */
+  private function findNeighborsFor(INetDevice $node) {
+    $devices = $this->collection->findLinkedDevicesFor($node);
+
+    return array_filter($this->nodes, function($node) use($devices) {
+      if (in_array("$node", $devices)) {
+        return $node;
+      }
+
+      return false;
+    });
   }
 
   /**
@@ -88,13 +102,12 @@ class Engine implements IEngine
    * @throws PathNotFoundException
    */
   private function getResult() {
-    $target_node = $this->getTargetNode();
-
-    if (!$target_node->isVisited() || $target_node->getLatency() > $this->max_latency) {
+    if (!$this->target_node->isVisited() ||
+        $this->target_node->getLatency() > $this->max_latency) {
       throw new PathNotFoundException;
     }
 
-    return $target_node;
+    return $this->target_node;
   }
 
   /**
@@ -103,7 +116,7 @@ class Engine implements IEngine
    * @return boolean
    */
   public function isDone() {
-    return $this->getTargetNode()->isVisited() || !$this->getMinLatencyNode();
+    return $this->target_node->isVisited() || !$this->getMinLatencyNode();
   }
 
   /**
@@ -112,7 +125,7 @@ class Engine implements IEngine
    * @return string
    */
   public function report() {
-    $node = $this->getTargetNode();
+    $node = $this->target_node;
     $path = [];
 
     do {
@@ -120,13 +133,9 @@ class Engine implements IEngine
       $node = $node->getUpstream();
     } while ($node);
 
-    array_push($path, $this->getTargetNode()->getLatency());
+    array_push($path, $this->target_node->getLatency());
 
     return implode('=>', $path);
-  }
-
-  private function getTargetNode() {
-    return $this->nodes[$this->target];
   }
 
   /**
@@ -136,7 +145,7 @@ class Engine implements IEngine
    */
   private function getMinLatencyNode() {
     return array_reduce($this->nodes, function($carry, $node) {
-      if (!$node->isVisited() && (!$carry || ($node->getLatency() < $carry->getLatency()))) {
+      if (!$carry || ($node->getLatency() < $carry->getLatency())) {
         $carry = $node;
       }
       return $carry;
@@ -168,11 +177,12 @@ class Engine implements IEngine
 
     $this->nodes = $this->rebuildNodes();
     $this->nodes[$this->source]->setLatency(0);
+    $this->target_node = $this->nodes[$this->target];
   }
 
   private function reset() {
     $this->nodes = [];
-    $this->source = $this->target = $this->max_latency = null;
+    $this->source = $this->target = $this->max_latency = $this->target_node = null;
     $this->isReversed = false;
   }
 }

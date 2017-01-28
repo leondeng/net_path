@@ -56,11 +56,11 @@ class ConnCollection implements IConnCollection
   public function findLinkedDevicesFor(IDevice $device) {
     return array_filter(array_map(function($conn) use($device) {
       if ((string) $conn->getFromDevice() === "$device") {
-        return $conn->getToDevice();
+        return (string) $conn->getToDevice();
       }
 
       if ((string) $conn->getToDevice() === "$device") {
-        return $conn->getFromDevice();
+        return (string) $conn->getFromDevice();
       }
 
       return false;
