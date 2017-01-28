@@ -20,9 +20,17 @@ class ConnCollection implements IConnCollection
   }
 
   public function getLatencyBetween(IDevice $from, IDevice $to) {
-    $connections = array_filter($this->connections, function($conn) use($from, $to) {
-      return $conn->getFromDevice()->getName() === $from->getName() &&
-        $conn->getToDevice()->getName() === $to->getName();
+    $from_name = $from->getName();
+    $to_name = $to->getName();
+
+    if ($from_name > $to_name) {
+      $from_name = $to->getName();
+      $to_name = $from->getName();
+    }
+
+    $connections = array_filter($this->connections, function($conn) use($from_name, $to_name) {
+      return $conn->getFromDevice()->getName() === $from_name &&
+        $conn->getToDevice()->getName() === $to_name;
     });
 
     if (empty($connections)) {
@@ -32,13 +40,18 @@ class ConnCollection implements IConnCollection
     return array_values($connections)[0]->getLatency();
   }
 
-  public function findDownstreamsFor(IDevice $device) {
-    $connections = array_filter($this->connections, function($conn) use ($device) {
-      return $conn->getFromDevice()->getName() === $device->getName();
-    });
+  public function findLinkedDevicesFor(IDevice $device) {
+    return array_filter(array_map(function($conn) use($device) {
+      if ($conn->getFromDevice()->getName() === $device->getName()) {
+        return $conn->getToDevice();
+      }
 
-    return array_map(function($conn) {
-      return $conn->getToDevice();
-    }, $connections);
+      if ($conn->getToDevice()->getName() === $device->getName()) {
+        return $conn->getFromDevice();
+      }
+
+      return false;
+
+    }, $this->connections));
   }
 }

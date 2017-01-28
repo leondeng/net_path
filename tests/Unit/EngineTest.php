@@ -10,6 +10,34 @@ use Netpath\Model\Device;
 
 class EngineTest extends TestCase
 {
+  const NO_PATH_FIXTURES = [
+    [
+      'from' => 'A',
+      'to'  => 'B',
+      'latency' => 10,
+    ],
+    [
+      'from' => 'A',
+      'to'  => 'C',
+      'latency' => 20,
+    ],
+    [
+      'from' => 'B',
+      'to'  => 'D',
+      'latency' => 100,
+    ],
+    [
+      'from' => 'C',
+      'to'  => 'D',
+      'latency' => 30,
+    ],
+    [
+      'from' => 'E',
+      'to'  => 'F',
+      'latency' => 1000,
+    ],
+  ];
+
   private $engine;
 
   public function test_init() {
@@ -25,9 +53,63 @@ class EngineTest extends TestCase
   /**
    * @expectedException \Netpath\Exception\DeviceNotFoundException
    */
-  public function test_find_path_exception() {
+  public function test_device_not_found_exception() {
     $engine = $this->getEngine();
     $engine->findPath('X', 'Y', 1024);
+  }
+
+  /**
+   * @expectedException \Netpath\Exception\InSituException
+   */
+  public function test_in_situ_exception() {
+    $engine = $this->getEngine();
+    $engine->findPath('A', 'A', 1024);
+  }
+
+  /**
+   * @expectedException \Netpath\Exception\PathNotFoundException
+   */
+  public function test_path_not_found_exception_latency() {
+    $engine = $this->getEngine();
+    $engine->findPath('E', 'F', 999);
+  }
+
+  /**
+   * @expectedException \Netpath\Exception\PathNotFoundException
+   */
+  public function test_path_not_found_exception_no_path() {
+    parent::$no_path_check = true;
+    $engine = $this->getEngine();
+    parent::$no_path_check = false;
+
+    $engine->findPath('A', 'F', 1100);
+  }
+
+  public function test_find_path() {
+    $engine = $this->getEngine();
+
+    foreach (parent::MINLATENCY as $from => $tos) {
+      foreach ($tos as $to => $min_latency) {
+        $max_latency = $min_latency + 10;
+        // $this->log("Testing: from $from to $to in max $max_latency...\n");
+
+        $target_node = $engine->findPath($from, $to, $max_latency);
+
+        $this->assertTrue($target_node->isVisited());
+        $this->assertEquals($min_latency, $target_node->getLatency());
+      }
+    }
+  }
+
+  public function test_report() {
+    $engine = $this->getEngine();
+
+    $engine->findPath('A', 'F', 1100);
+    $this->assertEquals('A=>C=>D=>E=>F=>1060', $engine->report());
+
+    //reverse check
+    $engine->findPath('E', 'A', 100);
+    $this->assertEquals('E=>D=>C=>A=>60', $engine->report());
   }
 
   private function getEngine() {
