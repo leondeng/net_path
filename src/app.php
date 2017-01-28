@@ -34,10 +34,10 @@ echo "Done.\n";
 
 do {
   echo "Please input [Device From] [Device To] [Time]: ";
-  $handle = fopen ("php://stdin","r");
+  $handle = fopen("php://stdin","r");
   $line = fgets($handle);
 
-  if(trim($line) == 'QUIT'){
+  if (trim($line) == 'QUIT'){
       echo "Bye!\n";
       exit;
   }

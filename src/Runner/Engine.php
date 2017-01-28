@@ -38,8 +38,8 @@ class Engine implements IEngine
   }
 
   private function addDevice(IDevice $device) {
-    if (!array_key_exists($device->getName(), $this->devices)) {
-      $this->devices[$device->getName()] = $device;
+    if (!array_key_exists("$device", $this->devices)) {
+      $this->devices["$device"] = $device;
     }
   }
 
@@ -47,6 +47,14 @@ class Engine implements IEngine
     return $this->devices;
   }
 
+  /**
+   * Find a path from source to target
+   * 
+   * @param  string $source
+   * @param  string $target
+   * @param  int    $max_latency
+   * @return INetDevice
+   */
   public function findPath(string $source, string $target, int $max_latency) {
     $this->init($source, $target, $max_latency);
 
@@ -55,13 +63,13 @@ class Engine implements IEngine
       $node->setVisited();
 
       foreach ($this->collection->findLinkedDevicesFor($node) as $device) {
-        if ($this->nodes[$device->getName()]->isVisited()) {
+        if ($this->nodes["$device"]->isVisited()) {
           continue;
         }
 
         $latency = $node->getLatency() + $this->collection->getLatencyBetween($node, $device);
 
-        $downstream = $this->nodes[$device->getName()];
+        $downstream = $this->nodes["$device"];
 
         if ($latency < $downstream->getLatency()) {
           $downstream->setLatency($latency);
@@ -70,6 +78,16 @@ class Engine implements IEngine
       }
     } while (!$this->isDone());
 
+    return $this->getResult();
+  }
+
+  /**
+   * Get path searching result
+   * 
+   * @return INetDevice
+   * @throws PathNotFoundException
+   */
+  private function getResult() {
     $target_node = $this->getTargetNode();
 
     if (!$target_node->isVisited() || $target_node->getLatency() > $this->max_latency) {
@@ -79,12 +97,20 @@ class Engine implements IEngine
     return $target_node;
   }
 
+  /**
+   * 2 conditions of finish: target visited, or target unreachable
+   * 
+   * @return boolean
+   */
   public function isDone() {
-    return $this->getTargetNode()->isVisited() ||
-      !$this->getMinLatencyNode() ||
-      $this->getMinLatencyNode()->getLatency() == INF;
+    return $this->getTargetNode()->isVisited() || !$this->getMinLatencyNode();
   }
 
+  /**
+   * Generate report
+   * 
+   * @return string
+   */
   public function report() {
     $node = $this->getTargetNode();
     $path = [];
@@ -103,10 +129,14 @@ class Engine implements IEngine
     return $this->nodes[$this->target];
   }
 
+  /**
+   * Get unvisited node with min latency
+   * 
+   * @return INetDevice
+   */
   private function getMinLatencyNode() {
     return array_reduce($this->nodes, function($carry, $node) {
-      if ((!$carry && !$node->isVisited()) ||
-         ($carry && !$node->isVisited() && $node->getLatency() < $carry->getLatency())) {
+      if (!$node->isVisited() && (!$carry || ($node->getLatency() < $carry->getLatency()))) {
         $carry = $node;
       }
       return $carry;
@@ -115,7 +145,7 @@ class Engine implements IEngine
 
   private function rebuildNodes() {
     return array_combine(array_keys($this->devices), array_map(function(IDevice $device) {
-      return new NetDevice($device->getName());
+      return new NetDevice("$device");
     }, $this->devices));
   }
 

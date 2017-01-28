@@ -19,18 +19,25 @@ class ConnCollection implements IConnCollection
     return $this->connections;
   }
 
+  /**
+   * Get latency between two devices
+   * 
+   * @param  IDevice $from
+   * @param  IDevice $to
+   * @return int
+   */
   public function getLatencyBetween(IDevice $from, IDevice $to) {
-    $from_name = $from->getName();
-    $to_name = $to->getName();
+    $from_name = "$from";
+    $to_name = "$to";
 
     if ($from_name > $to_name) {
-      $from_name = $to->getName();
-      $to_name = $from->getName();
+      $from_name = "$to";
+      $to_name = "$from";
     }
 
     $connections = array_filter($this->connections, function($conn) use($from_name, $to_name) {
-      return $conn->getFromDevice()->getName() === $from_name &&
-        $conn->getToDevice()->getName() === $to_name;
+      return (string) $conn->getFromDevice() === $from_name &&
+        (string) $conn->getToDevice() === $to_name;
     });
 
     if (empty($connections)) {
@@ -40,13 +47,19 @@ class ConnCollection implements IConnCollection
     return array_values($connections)[0]->getLatency();
   }
 
+  /**
+   * Find directly linked devices for given device
+   * 
+   * @param  IDevice $device
+   * @return array
+   */
   public function findLinkedDevicesFor(IDevice $device) {
     return array_filter(array_map(function($conn) use($device) {
-      if ($conn->getFromDevice()->getName() === $device->getName()) {
+      if ((string) $conn->getFromDevice() === "$device") {
         return $conn->getToDevice();
       }
 
-      if ($conn->getToDevice()->getName() === $device->getName()) {
+      if ((string) $conn->getToDevice() === "$device") {
         return $conn->getFromDevice();
       }
 
