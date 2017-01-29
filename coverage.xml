@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1485673667">
-  <project timestamp="1485673667">
+<coverage generated="1485675202">
+  <project timestamp="1485675202">
     <package name="Netpath\Exception">
       <file name="/home/fan/dev/github/net_path/src/Exception/ConnectionNotFoundException.php">
         <class name="ConnectionNotFoundException" namespace="Netpath\Exception">
@@ -144,7 +144,7 @@
     <package name="Netpath\Runner">
       <file name="/home/fan/dev/github/net_path/src/Runner/Engine.php">
         <class name="Engine" namespace="Netpath\Runner">
-          <metrics complexity="28" methods="12" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="53" coveredstatements="52" elements="65" coveredelements="63"/>
+          <metrics complexity="28" methods="12" coveredmethods="12" conditionals="0" coveredconditionals="0" statements="53" coveredstatements="53" elements="65" coveredelements="65"/>
         </class>
         <line num="26" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="6"/>
         <line num="27" type="stmt" count="6"/>
@@ -187,33 +187,33 @@
         <line num="109" type="stmt" count="1"/>
         <line num="117" type="method" name="isDone" visibility="public" complexity="2" crap="2" count="3"/>
         <line num="118" type="stmt" count="3"/>
-        <line num="140" type="method" name="getIsReversed" visibility="public" complexity="1" crap="2" count="0"/>
-        <line num="141" type="stmt" count="0"/>
-        <line num="149" type="method" name="getMinLatencyNode" visibility="private" complexity="3" crap="3" count="3"/>
-        <line num="151" type="stmt" count="3"/>
-        <line num="152" type="stmt" count="3"/>
-        <line num="154" type="stmt" count="3"/>
+        <line num="121" type="method" name="getIsReversed" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="122" type="stmt" count="1"/>
+        <line num="130" type="method" name="getMinLatencyNode" visibility="private" complexity="3" crap="3" count="3"/>
+        <line num="132" type="stmt" count="3"/>
+        <line num="133" type="stmt" count="3"/>
+        <line num="135" type="stmt" count="3"/>
+        <line num="136" type="stmt" count="3"/>
+        <line num="140" type="method" name="anonymous function" complexity="1" crap="1" count="3"/>
+        <line num="141" type="stmt" count="3"/>
+        <line num="142" type="stmt" count="3"/>
+        <line num="145" type="method" name="init" visibility="private" complexity="5" crap="5" count="5"/>
+        <line num="146" type="stmt" count="5"/>
+        <line num="147" type="stmt" count="5"/>
+        <line num="148" type="stmt" count="1"/>
+        <line num="151" type="stmt" count="4"/>
+        <line num="152" type="stmt" count="1"/>
         <line num="155" type="stmt" count="3"/>
-        <line num="159" type="method" name="anonymous function" complexity="1" crap="1" count="3"/>
+        <line num="156" type="stmt" count="3"/>
+        <line num="157" type="stmt" count="3"/>
+        <line num="158" type="stmt" count="3"/>
         <line num="160" type="stmt" count="3"/>
         <line num="161" type="stmt" count="3"/>
-        <line num="164" type="method" name="init" visibility="private" complexity="5" crap="5" count="5"/>
-        <line num="165" type="stmt" count="5"/>
-        <line num="166" type="stmt" count="5"/>
-        <line num="167" type="stmt" count="1"/>
-        <line num="170" type="stmt" count="4"/>
-        <line num="171" type="stmt" count="1"/>
-        <line num="174" type="stmt" count="3"/>
-        <line num="175" type="stmt" count="3"/>
-        <line num="176" type="stmt" count="3"/>
-        <line num="177" type="stmt" count="3"/>
-        <line num="179" type="stmt" count="3"/>
-        <line num="180" type="stmt" count="3"/>
-        <line num="181" type="stmt" count="3"/>
-        <line num="182" type="stmt" count="3"/>
-        <metrics loc="183" ncloc="135" classes="1" methods="12" coveredmethods="11" conditionals="0" coveredconditionals="0" statements="53" coveredstatements="52" elements="65" coveredelements="63"/>
+        <line num="162" type="stmt" count="3"/>
+        <line num="163" type="stmt" count="3"/>
+        <metrics loc="164" ncloc="134" classes="1" methods="12" coveredmethods="12" conditionals="0" coveredconditionals="0" statements="53" coveredstatements="53" elements="65" coveredelements="65"/>
       </file>
     </package>
-    <metrics files="14" loc="447" ncloc="375" classes="5" methods="33" coveredmethods="32" conditionals="0" coveredconditionals="0" statements="105" coveredstatements="104" elements="138" coveredelements="136"/>
+    <metrics files="14" loc="428" ncloc="374" classes="5" methods="33" coveredmethods="33" conditionals="0" coveredconditionals="0" statements="105" coveredstatements="105" elements="138" coveredelements="138"/>
   </project>
 </coverage>

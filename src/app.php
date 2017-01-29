@@ -47,10 +47,11 @@ do {
   $params = explode(' ', trim($line));
 
   try {
-    $end = $engine->findPath($params[0], $params[1], (int) $params[2]);
-    $reversed = $engine->getIsReversed();
-
-    echo "Output: " . $end->report($reversed) . PHP_EOL;
+    echo "Output: ";
+    echo $engine
+      ->findPath($params[0], $params[1], (int) $params[2])
+      ->report($engine->getIsReversed()) . PHP_EOL
+    ;
   } catch (PathNotFoundException $e) {
     echo "Path not found.\n";
   } catch (InSituException $e) {

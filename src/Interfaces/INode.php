@@ -11,5 +11,5 @@ interface INode
   public function getPreviousNode();
   public function isVisited();
   public function setVisited();
-  public function report();
+  public function report(bool $reversed = false);
 }
