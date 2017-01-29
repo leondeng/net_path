@@ -7,5 +7,5 @@ interface IEngine
   public function findPath(string $source, string $target, int $max_latency);
   public function getDevices();
   public function isDone();
-  public function report();
+  public function getIsReversed();
 }

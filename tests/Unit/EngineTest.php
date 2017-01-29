@@ -101,17 +101,6 @@ class EngineTest extends TestCase
     }
   }
 
-  public function test_report() {
-    $engine = $this->getEngine();
-
-    $engine->findPath('A', 'F', 1100);
-    $this->assertEquals('A=>C=>D=>E=>F=>1060', $engine->report());
-
-    //reverse check
-    $engine->findPath('E', 'A', 100);
-    $this->assertEquals('E=>D=>C=>A=>60', $engine->report());
-  }
-
   private function getEngine() {
     if (!$this->engine) {
       $this->engine = new Engine($this->getConnCollection());

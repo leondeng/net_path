@@ -2,12 +2,14 @@
 
 namespace Netpath\Interfaces;
 
-interface INetDevice extends IDevice
+interface INode
 {
+  public function getDevice();
   public function setLatency(int $latency);
   public function getLatency();
-  public function setUpstream(INetDevice $device);
-  public function getUpstream();
+  public function setPreviousNode(INode $node);
+  public function getPreviousNode();
   public function isVisited();
   public function setVisited();
+  public function report();
 }

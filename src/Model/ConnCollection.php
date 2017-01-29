@@ -25,6 +25,7 @@ class ConnCollection implements IConnCollection
    * @param  IDevice $from
    * @param  IDevice $to
    * @return int
+   * @throws ConnectionNotFoundException
    */
   public function getLatencyBetween(IDevice $from, IDevice $to) {
     $from_name = "$from";
@@ -53,13 +54,13 @@ class ConnCollection implements IConnCollection
    * @param  IDevice $device
    * @return array
    */
-  public function findLinkedDevicesFor(string $device) {
+  public function findLinkedDevicesFor(IDevice $device) {
     return array_filter(array_map(function($conn) use($device) {
-      if ((string) $conn->getFromDevice() === $device) {
+      if ((string) $conn->getFromDevice() === "$device") {
         return (string) $conn->getToDevice();
       }
 
-      if ((string) $conn->getToDevice() === $device) {
+      if ((string) $conn->getToDevice() === "$device") {
         return (string) $conn->getFromDevice();
       }
 

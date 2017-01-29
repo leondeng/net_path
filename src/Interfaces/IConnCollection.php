@@ -6,5 +6,5 @@ interface IConnCollection
 {
   public function addConnection(IConnection $connection);
   public function getLatencyBetween(IDevice $from, IDevice $to);
-  public function findLinkedDevicesFor(string $device);
+  public function findLinkedDevicesFor(IDevice $device);
 }

@@ -32,8 +32,10 @@ $engine = new Engine($collection);
 
 echo "Done.\n";
 
+echo "Input [Device From][Device To][Time] to find path, 'QUIT' to exit.\n";
+
 do {
-  echo "Please input [Device From] [Device To] [Time]: ";
+  echo "Input: ";
   $handle = fopen("php://stdin", "r");
   $line = fgets($handle);
 
@@ -45,8 +47,10 @@ do {
   $params = explode(' ', trim($line));
 
   try {
-    $engine->findPath($params[0], $params[1], (int) $params[2]);
-    echo $engine->report() . PHP_EOL;
+    echo "Output: " . $engine
+      ->findPath($params[0], $params[1], (int) $params[2])
+      ->report($engine->getIsReversed()) . PHP_EOL
+    ;
   } catch (PathNotFoundException $e) {
     echo "Path not found.\n";
   } catch (InSituException $e) {

@@ -3,10 +3,10 @@
 namespace Netpath\Runner;
 
 use Netpath\Interfaces\IConnCollection;
-use Netpath\Interfaces\INetDevice;
+use Netpath\Interfaces\INode;
 use Netpath\Interfaces\IDevice;
 use Netpath\Interfaces\IEngine;
-use Netpath\Model\NetDevice;
+use Netpath\Model\Node;
 use Netpath\Exception\DeviceNotFoundException;
 use Netpath\Exception\PathNotFoundException;
 use Netpath\Exception\InSituException;
@@ -53,7 +53,7 @@ class Engine implements IEngine
    * @param  string $source
    * @param  string $target
    * @param  int    $max_latency
-   * @return INetDevice
+   * @return INode
    */
   public function findPath(string $source, string $target, int $max_latency) {
     $this->init($source, $target, $max_latency);
@@ -64,11 +64,11 @@ class Engine implements IEngine
       unset($this->nodes["$node"]);
 
       foreach ($this->findNeighborsFor($node) as $neighbor) {
-        $latency = $node->getLatency() + $this->collection->getLatencyBetween($node, $neighbor);
+        $latency = $node->getLatency() + $this->collection->getLatencyBetween($node->getDevice(), $neighbor->getDevice());
 
         if ($latency < $neighbor->getLatency()) {
           $neighbor->setLatency($latency);
-          $neighbor->setUpstream($node);
+          $neighbor->setPreviousNode($node);
         }
       }
     } while (!$this->isDone());
@@ -77,13 +77,13 @@ class Engine implements IEngine
   }
 
   /**
-   * Find unvisited neighbor nodes for given nodes
+   * Find unvisited neighbor nodes for given node
    * 
-   * @param  INetDevice $node
+   * @param  INode $node
    * @return array
    */
-  private function findNeighborsFor(INetDevice $node) {
-    $devices = $this->collection->findLinkedDevicesFor("$node");
+  private function findNeighborsFor(INode $node) {
+    $devices = $this->collection->findLinkedDevicesFor($node->getDevice());
 
     return array_filter($this->nodes, function($node) use($devices) {
       if (in_array("$node", $devices)) {
@@ -97,7 +97,7 @@ class Engine implements IEngine
   /**
    * Get path searching result
    * 
-   * @return INetDevice
+   * @return INode
    * @throws PathNotFoundException
    */
   private function getResult() {
@@ -118,29 +118,14 @@ class Engine implements IEngine
     return $this->target_node->isVisited() || !$this->getMinLatencyNode();
   }
 
-  /**
-   * Generate report
-   * 
-   * @return string
-   */
-  public function report() {
-    $node = $this->target_node;
-    $path = [];
-
-    do {
-      $this->isReversed ? array_push($path, $node) : array_unshift($path, $node);
-      $node = $node->getUpstream();
-    } while ($node);
-
-    array_push($path, $this->target_node->getLatency());
-
-    return implode('=>', $path);
+  public function getIsReversed() {
+    return $this->isReversed;
   }
 
   /**
    * Get unvisited node with min latency
    * 
-   * @return INetDevice
+   * @return INode
    */
   private function getMinLatencyNode() {
     return array_reduce($this->nodes, function($carry, $node) {
@@ -153,7 +138,7 @@ class Engine implements IEngine
 
   private function rebuildNodes() {
     return array_combine(array_keys($this->devices), array_map(function(IDevice $device) {
-      return new NetDevice("$device");
+      return new Node($device);
     }, $this->devices));
   }
 
