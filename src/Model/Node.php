@@ -54,7 +54,7 @@ class Node implements INode
   public function report(bool $reversed = false) {
     $node = $this;
     $path = [];
-    $method =  $reversed ? 'array_push' : 'array_unshift';
+    $method = $reversed ? 'array_push' : 'array_unshift';
 
     do {
       $method($path, $node);

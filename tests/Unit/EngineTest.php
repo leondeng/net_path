@@ -43,6 +43,7 @@ class EngineTest extends TestCase
   public function test_init() {
     $engine = $this->getEngine();
 
+    $this->assertFalse($engine->getIsReversed());
     $this->assertEquals(6, count($engine->getDevices()));
     $this->assertEquals('A,B,C,D,E,F', implode(',', array_keys($engine->getDevices())));
     $this->assertEquals('A,B,C,D,E,F', implode(',', array_map(function($device) {
